@@ -1,99 +1,315 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Tumkur University Result</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 40px;
-    }
-    h1, h2 {
-      text-align: center;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-    th, td {
-      border: 1px solid #333;
-      padding: 6px;
-      text-align: center;
-      font-size: 14px;
-    }
-    .info, .footer, .note {
-      margin-top: 20px;
-      font-size: 14px;
-    }
-    .note {
-      background-color: #fff8dc;
-      padding: 10px;
-      border: 1px solid #ccc;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Tumkur University Result</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0 10px;
+    background: #fff;
+    color: #000;
+  }
+  h2 {
+    text-align: center;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    margin-top: 20px;
+  }
+  .info-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin: 10px 0;
+    flex-wrap: wrap;
+  }
+  .info-item {
+    margin: 5px 10px 5px 0;
+  }
+  label {
+    font-weight: bold;
+  }
+  select {
+    padding: 2px 5px;
+  }
+  button {
+    background-color: #2a7f8f;
+    color: white;
+    border: none;
+    padding: 5px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 5px;
+  }
+  button:hover {
+    background-color: #1f5c63;
+  }
+  a {
+    text-decoration: none;
+    color: #0000ee;
+  }
+  .result-published {
+    font-size: 14px;
+    color: blue;
+    margin-bottom: 10px;
+  }
+  .entries-search {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    font-size: 14px;
+  }
+  .entries-search select,
+  .entries-search input[type="text"] {
+    padding: 2px 5px;
+    font-size: 14px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  th, td {
+    border: 1px solid #000;
+    padding: 5px 6px;
+    text-align: center;
+    vertical-align: middle;
+  }
+  th {
+    background-color: #2a3e5c;
+    color: white;
+    font-weight: normal;
+  }
+  td:first-child, th:first-child {
+    width: 30px;
+  }
+  td:nth-child(2), th:nth-child(2),
+  td:nth-child(3), th:nth-child(3) {
+    width: 90px;
+  }
+  td:nth-child(4), th:nth-child(4),
+  td:nth-child(5), th:nth-child(5),
+  td:nth-child(6), th:nth-child(6),
+  td:nth-child(7), th:nth-child(7),
+  td:nth-child(8), th:nth-child(8),
+  td:nth-child(9), th:nth-child(9),
+  td:nth-child(10), th:nth-child(10),
+  td:nth-child(11), th:nth-child(11),
+  td:nth-child(12), th:nth-child(12),
+  td:nth-child(13), th:nth-child(13) {
+    width: 50px;
+  }
+  .result-summary {
+    background-color: #2a3e5c;
+    color: white;
+    font-weight: bold;
+    padding: 5px 10px;
+    margin-top: 5px;
+  }
+  .pagination {
+    margin-top: 10px;
+    font-size: 14px;
+    text-align: right;
+  }
+  .pagination button {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    color: #000;
+    padding: 3px 8px;
+    margin-left: 3px;
+    cursor: pointer;
+  }
+  .pagination button.active {
+    background-color: #2a3e5c;
+    color: white;
+    border-color: #2a3e5c;
+  }
+  .buttons {
+    margin-top: 15px;
+  }
+  .buttons button {
+    padding: 6px 15px;
+    font-size: 14px;
+    margin-right: 10px;
+    border-radius: 3px;
+  }
+  .print-btn {
+    background-color: #3cb371;
+    color: white;
+    border: none;
+  }
+  .print-btn:hover {
+    background-color: #2e8b57;
+  }
+  .back-btn {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+  }
+  .back-btn:hover {
+    background-color: #b52b27;
+  }
+  .note {
+    background-color: #fff3cd;
+    border: 1px solid #ffeeba;
+    padding: 10px;
+    margin-top: 15px;
+    font-size: 13px;
+    color: #856404;
+  }
+  footer {
+    background-color: #1a2a44;
+    color: #f0f0f0;
+    font-size: 12px;
+    padding: 15px 10px;
+    margin-top: 30px;
+    text-align: center;
+    line-height: 1.4;
+  }
+  footer a {
+    color: #f0f0f0;
+    text-decoration: underline;
+  }
+  footer .highlight {
+    color: #ff6600;
+    font-weight: bold;
+  }
+  /* Top bar with text and green circle */
+  .top-bar {
+    background-color: #f0f8ff;
+    padding: 5px 10px;
+    font-size: 12px;
+    color: #333;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+  }
+  .top-bar .green-circle {
+    width: 12px;
+    height: 12px;
+    background-color: #2ecc71;
+    border-radius: 50%;
+    margin-left: 8px;
+  }
+</style>
 </head>
 <body>
 
-<h1>Tumkur University</h1>
-<h2>UUCMS - Exam Result</h2>
+<div class="top-bar" color="blue">
+  <span>Sagar L (Government First Grade College, Tumkur)</span>
+  <div class="green-circle"></div>
+</div>
 
-<div class="info">
-  <p><strong>Exam Month:</strong> U1,3-22F&R-Feb-24</p>
-  <p><strong>Exam Type:</strong> Regular Exam</p>
-  <p><strong>Program Level:</strong> UG</p>
-  <p><strong>Program Name:</strong> Bachelor of Computer Applications</p>
-  <p><strong>Student Reg No:</strong> U11GT23S0135</p>
-  <p><strong>Student Name:</strong> Sagar L</p>
-  <p><strong>Term/Semester:</strong> I</p>
-  <p><strong>Result Published on:</strong> 09-05-24 AT 17:26</p>
+<h2>Tumkur University</h2>
+
+<div class="info-row">
+  <div class="info-item"><label>Exam Month:</label> U13-22F&R-Feb-24</div>
+  <div class="info-item"><label>Exam Type:</label> Regular Exam</div>
+  <div class="info-item"><label>Program Level:</label> UG</div>
+  <div class="info-item"><label>Program Name:</label> Bachelor of Computer Applications</div>
+</div>
+
+<div class="info-row">
+  <div class="info-item"><label>Student Reg No:</label> U11GT23S0135</div>
+  <div class="info-item"><label>Student Name:</label> Sagar L</div>
+  <div class="info-item">
+    <label>Term/Semester:</label>
+    <select>
+      <option>I</option>
+    </select>
+    <button>View</button>
+  </div>
+</div>
+
+<div class="result-published">
+  <a href="#">Result Published on 09-05-24 AT 17:26</a>
+</div>
+
+<div class="entries-search">
+  <div>
+    Show 
+    <select>
+      <option>10</option>
+    </select> 
+    entries
+  </div>
+  <div>
+    Search: <input type="text" />
+  </div>
 </div>
 
 <table>
   <thead>
     <tr>
-      <th>Sl. No.</th>
+      <th>SLNo.</th>
       <th>Course Code</th>
       <th>Course Name</th>
-      <th>Max Marks</th>
-      <th>Min Marks</th>
+      <th>Maximum Marks</th>
+      <th>Minimum Marks</th>
       <th>SE Marks</th>
       <th>IA Marks</th>
-      <th>Total</th>
+      <th>Marks Scored</th>
       <th>Credits</th>
       <th>Grade</th>
       <th>Credit Points</th>
+      <th>Letter Grade</th>
       <th>Status</th>
     </tr>
   </thead>
   <tbody>
-    <tr><td>1</td><td>CADSC01</td><td>Fundamentals of Computers</td><td>100</td><td>40</td><td>27</td><td>39</td><td>66</td><td>3</td><td>6.5</td><td>19.5</td><td>Pass</td></tr>
-    <tr><td>2</td><td>CADSC02</td><td>Programming in C</td><td>100</td><td>40</td><td>24</td><td>39</td><td>63</td><td>3</td><td>6.5</td><td>19.5</td><td>Pass</td></tr>
-    <tr><td>3</td><td>CADSC03(b)</td><td>Accountancy</td><td>100</td><td>40</td><td>25</td><td>40</td><td>65</td><td>3</td><td>6.5</td><td>19.5</td><td>Pass</td></tr>
-    <tr><td>4</td><td>ENGL02</td><td>Effervesense</td><td>100</td><td>40</td><td>28</td><td>33</td><td>61</td><td>3</td><td>6</td><td>18</td><td>Pass</td></tr>
-    <tr><td>5</td><td>KAN-L-7.1</td><td>Sahitya Manthana</td><td>100</td><td>40</td><td>44</td><td>35</td><td>79</td><td>3</td><td>8</td><td>24</td><td>Pass</td></tr>
-    <tr><td>6</td><td>KAN-L-OE-2.1</td><td>Sahitya Kathana - I</td><td>100</td><td>40</td><td>48</td><td>35</td><td>83</td><td>3</td><td>8.5</td><td>25.5</td><td>Pass</td></tr>
-    <tr><td>7</td><td>CADSC01P</td><td>Information Technology Lab</td><td>50</td><td>20</td><td>24</td><td>24</td><td>48</td><td>2</td><td>9.5</td><td>19</td><td>Pass</td></tr>
-    <tr><td>8</td><td>CADSC02P</td><td>C Programming Lab</td><td>50</td><td>20</td><td>23</td><td>24</td><td>47</td><td>2</td><td>9.5</td><td>19</td><td>Pass</td></tr>
-    <tr><td>9</td><td>ENVS101</td><td>Environmental Studies</td><td>50</td><td>20</td><td>16</td><td>20</td><td>36</td><td>2</td><td>7</td><td>14</td><td>Pass</td></tr>
-    <tr><td>10</td><td>PEDSEC01</td><td>Physical Education and Yoga - I</td><td>25</td><td>10</td><td>23</td><td>-</td><td>23</td><td>1</td><td>9</td><td>9</td><td>Pass</td></tr>
+    <tr><td>1</td><td>CADSC01</td><td>Fundamentals of Computers</td><td>100</td><td>40</td><td>52</td><td>40</td><td>92</td><td>3</td><td>9</td><td>27</td><td></td><td>Pass</td></tr>
+    <tr><td>2</td><td>CADSC02</td><td>Programming in C</td><td>100</td><td>40</td><td>43</td><td>39</td><td>82</td><td>3</td><td>8</td><td>24</td><td></td><td>Pass</td></tr>
+    <tr><td>3</td><td>CADSC03(b)</td><td>Accountancy</td><td>100</td><td>40</td><td>38</td><td>40</td><td>78</td><td>3</td><<td>8</td><td>24</td><td></td><td>Pass</td></tr>
+    <tr><td>4</td><td>ENGL02</td><td>Effervessense</td><td>100</td><td>40</td><td>31</td><td>33</td><td>64</td><td>3</td><td>6.5</td><td>19.5</td><td></td><td>Pass</td></tr>
+    <tr><td>5</td><td>KAN-L-7.1</td><td>Sahity Manthana</td><td>100</td><td>40</td><td>46</td><td>38</td><td>84</td><td>3</td><td>8.5</td><td>25.5</td><td></td><td>Pass</td></tr>
+    <tr><td>6</td><td>KAN-L-0E-2.1</td><td>Sahitya Kathana - I</td><td>100</td><td>40</td><td>50</td><td>35</td><td>85</td><td>3</td><td>8.5</td><td>25.5</td><td></td><td>Pass</td></tr>
+    <tr><td>7</td><td>CADSC01P</td><td>Information Technology Lab</td><td>50</td><td>20</td><td>24</td><td>22</td><td>46</td><td>2</td><td>9</td><td>18</td><td></td><td>Pass</td></tr>
+    <tr><td>8</td><td>CADSC02P</td><td>C Programming Lab</td><td>50</td><td>20</td><td>22</td><td>24</td><td>46</td><td>2</td><td>9</td><td>18</td><td></td><td>Pass</td></tr>
+    <tr><td>9</td><td>ENVS101</td><td>Environmental Studies</td><td>50</td><td>20</td><td>22</td><td>20</td><td>42</td><td>2</td><td>8.5</td><td>17</td><td></td><td>Pass</td></tr>
+    <tr><td>10</td><td>PEDSEC01</td><td>Physical Education and Yoga - I</td><td>25</td><td>10</td><td></td><td>23</td><td>23</td><td>1</td><td>9</td><td>9</td><td></td><td>Pass</td></tr>
   </tbody>
 </table>
 
-<div class="info">
-  <p><strong>Result:</strong> PASS</p>
-  <p><strong>SGPA:</strong> 7.54 | <strong>CGPA:</strong> 7.54 | <strong>Term Grade:</strong> A</p>
+<div class="result-summary">
+  Result : PASS &nbsp;&nbsp; SGPA : 8.33 &nbsp;&nbsp; CGPA : 8.33 &nbsp;&nbsp; Term Grade : A+
+</div>
+
+<div class="pagination">
+  Showing 1 to 10 of 11 entries
+  <button disabled>Previous</button>
+  <button class="active">1</button>
+  <button>2</button>
+  <button>Next</button>
+</div>
+
+<div class="buttons">
+  <button class="print-btn">Print</button>
+  <button class="back-btn">Back</button>
 </div>
 
 <div class="note">
-  <p><strong>Note:</strong> This cannot be treated as original marks sheet. This result published here is for the immediate information of student. Original marks sheet will be issued by respective university.</p>
+  <strong>Note:</strong> This cannot be treated as original marks sheet. This result published here is for the immediate information of student. Original marks sheet will be issued by respective university
 </div>
 
-<div class="footer">
-  <p>Technical Help Desk Number: 080-24411500 (10AM-5:30PM)</p>
-  <p>Email: <a href="mailto:uucms.helpdesk@karnataka.gov.in">uucms.helpdesk@karnataka.gov.in</a></p>
-  <p>Payment Queries: +91-022-24994200, +91-022-49142595 | Email: <a href="mailto:info_ndml@ndml.in">info_ndml@ndml.in</a></p>
-</div>
+<footer>
+  <div>
+    <span class="highlight">Disclaimer:</span> Please note this page also provides links to websites/ucb pages of Govt. Ministries/Departments/Organisations. The content of these websites are owned by the respective organisations and they may be contacted for any further information or suggestion
+  </div>
+  <div>
+    <span class="highlight">Technical Help Desk Number :</span> 080-24411500(10AM-5.30PM)
+  </div>
+  <div>
+    <span class="highlight">Email :</span> uucms.helpdesk@karnataka.gov.in
+  </div>
+  <div>
+    For Payment Related Queries, please contact : +91-022-24994200, +91-022-49142595 <span class="highlight">Email:</span> info_ndml@ndml.in
+  </div>
+  <div style="margin-top:10px; font-size: 11px; color: #ccc;">
+    Designed & Developed by Centre for Smart Governance (U_ADM_4.10_0.17_E_0.3)
+  </div>
+</footer>
 
 </body>
 </html>
