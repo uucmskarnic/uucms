@@ -286,6 +286,26 @@
   <button class="print-btn">Print</button>
   <button class="back-btn">Back</button>
 </div>
+  <script>
+    // Get a reference to the back button using its ID (assuming your button has id="backButton")
+    const backButton = document.getElementById('backButton');
+
+    // Add a click event listener to the back button
+    if (backButton) { // Check if the button exists before adding the listener
+      backButton.addEventListener('click', function() {
+        // Use the history.back() method to go to the previous page in the browser's history
+        window.history.back();
+      });
+    }
+
+    // Optional: Add functionality for a print button (assuming it has class="print-btn")
+    const printButton = document.querySelector('.print-btn');
+    if (printButton) {
+      printButton.addEventListener('click', function() {
+        window.print(); // Triggers the browser's print dialog
+      });
+    }
+  </script>
 
 <div class="note">
   <strong>Note:</strong> This cannot be treated as original marks sheet. This result published here is for the immediate information of student. Original marks sheet will be issued by respective university
